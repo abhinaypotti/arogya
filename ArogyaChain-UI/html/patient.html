@@ -1,162 +1,183 @@
 <!-- 
 Author       : Shanmuka Abhinay Potti
-Date Updated : 02.05.2020
+Date Updated : 05.06.2020
 -->
 <!DOCTYPE html>
 <html>
 <head>
-    
-    <title>Arogya chain</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+    <title>Arogya chain | Patient</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	* {
+	  box-sizing: border-box;
+	}
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
+	input[type=text], select, textarea {
+	  width: 100%;
+	  padding: 12px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  resize: vertical;
+	}
 
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
+	label {
+	  padding: 12px 12px 12px 0;
+	  display: inline-block;
+	}
 
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
+	input[type=submit] {
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 12px 20px;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  float: right;
+	}
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+	input[type=submit]:hover {
+	  background-color: #45a049;
+	}
 
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
+	.container {
+	  border-radius: 5px;
+	  background-color: #f2f2f2;
+	  padding: 20px;
+	}
 
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
-}
+	.col-25 {
+	  float: left;
+	  width: 25%;
+	  margin-top: 6px;
+	}
 
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
+	.col-75 {
+	  float: left;
+	  width: 75%;
+	  margin-top: 6px;
+	}
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
-</style>
-</head>
-<body>
-<h1 align="center">Arogya chain</h1>
-<h2>Patient Registration</h2>
-<p>Register as a patient here</p>
+	/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+	@media screen and (max-width: 600px) {
+	  .col-25, .col-75, input[type=submit] {
+		width: 100%;
+		margin-top: 0;
+	  }
+	}
+	</style>
+	</head>
+	<body>
+	
+	<h1 align="center">Arogya chain</h1>
+	<h2>Patient Registration</h2>
+	<p>Register as a patient here</p>
 
-<div class="container">
-  <form action="/action_page.php">
-    <div class="row">
-      <div class="col-25">
-        <label for="fname">Patient Name</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="fname" name="name" id ="pat_name" placeholder="Your name..">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-          <label for="birthday">Date for Birth</label>
-      </div>
-      <div class="col-75">
-  <input type="date" id="birthday" name="birthday">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="gender">Gender</label>
-      </div>
-      <div class="col-75">
-        <select id="gender" name="gender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
-    </div>
-    
-      
-    <div class="row">
-      <div class="col-25">
-        <label for="address">Address</label>
-      </div>
-      <div class="col-75">
-        <textarea id="address" rows="4" cols="50" name="address" placeholder="Enter Address here...">
-</textarea>
-      </div>
-    </div>
-      <br>
-    <div class="row">
-        <button type="button" align="right" onclick="registerPat()">Submit</button>
-      
-    </div>
-  </form>
-    
-    
-</div>
-    Patient ID: <p id="pat_id"></p><br>
-    Patient Name: <p id="disp_pat_name"></p><br>
-    Patient Date of Birth: <p id="pat_dob"></p><br>
-    Patient Gender: <p id="pat_gender"></p><br>
-    Patient Address: <p id="pat_address"></p><br>
+	<div class="container">
+	  <form action="/action_page.php">
+		<div class="row">
+		  <div class="col-25">
+			<label for="fname">Patient Name</label>
+		  </div>
+		  <div class="col-75">
+			<input type="text" id="fname" name="name" id ="pat_name" placeholder="Your name..">
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col-25">
+			  <label for="birthday">Date for Birth</label>
+		  </div>
+		  <div class="col-75">
+	  <input type="date" id="birthday" name="birthday">
+		  </div>
+		</div>
+		<div class="row">
+		  <div class="col-25">
+			<label for="gender">Gender</label>
+		  </div>
+		  <div class="col-75">
+			<select id="gender" name="gender">
+			  <option value="male">Male</option>
+			  <option value="female">Female</option>
+			  <option value="Other">Other</option>
+			</select>
+		  </div>
+		</div>
+		
+		  
+		<div class="row">
+		  <div class="col-25">
+			<label for="address">Address</label>
+		  </div>
+		  <div class="col-75">
+			<textarea id="address" rows="4" cols="50" name="address" placeholder="Enter Address here..."></textarea>
+		  </div>
+		</div>
+		  <br>
+		<div class="row">
+			<button type="button" align="right" onclick="registerPat()">Submit</button>
+		  
+		</div>
+	  </form>
+		
+		
+	</div>
+		Patient ID: <p id="pat_id"></p><br>
+		Patient Name: <p id="disp_pat_name"></p><br>
+		Patient Date of Birth: <p id="pat_dob"></p><br>
+		Patient Gender: <p id="pat_gender"></p><br>
+		Patient Address: <p id="pat_address"></p><br>
     
     
      <!-- 
     Author       : Ramaguru Radhakrishnan
-    Date Updated : 01.05.2020
+    Date Updated : 18.05.2020
     -->
-    <script src=" https://cdn.jsdelivr.net/npm/web3@1.2.7/dist/web3.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
     <script src="../js/abi.js"></script>
     <script>
-        window.onload = function () 
-        {
-            // check to see if user has metamask addon installed on his browser. check to make sure web3 is defined
-            if (typeof web3 ==='undefined') 
-            {
-                web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-                //web3 = new Web3(new web3.currentProvider);
-            }
-        }  
+		var account;
+        window.addEventListener('load', async () => {
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is installed!"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
+
+			});
     </script>
     
     <script>
          web3 = new Web3(new Web3.providers.WebsocketProvider("wss://ropsten.infura.io/ws/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-         console.log("checking");
+
          var subscription = web3.eth.subscribe('logs', {
              address: '0x2Aad0cB9eB6C39508599E5aD866C18a2d90187Ff',
              topics: ['0xa1cac0c02aaa8455b22f4edad5ea6218aeec41fd73afcf8668f7586accd1f901']
@@ -171,15 +192,15 @@ input[type=submit]:hover {
                 console.log(error);
              }
          });
+		 
+		 
         function hexToString (hex) 
-        {
-            var string = '';
-            for (var i = 128; i < hex.length; i += 2) 
-            {
-                string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-            }
-            return string.substring(1);
-        }
+					{
+						var tobeconverted = '';
+						tobeconverted = parseInt(hex).toString();
+						console.log(tobeconverted);
+						return tobeconverted;
+					}
         
         //function to retrieve the last inserted value on the blockchain
         function registerPat()
@@ -191,16 +212,14 @@ input[type=submit]:hover {
             {
                
                 //instantiate and connect to contract address via Abi
-                var myContract = new web3.eth.Contract(patABI, patSCAddr, {from: '0xB12EF1064EC99D5b6d404396631BEb2724181f96', gasPrice: '5000000'});
-                //call the get function of our SimpleStorage contract
-               // console.log(myContract);
+                var myContract = new web3.eth.Contract(patABI, patSCAddr, {from: account, gasPrice: '5000000', gas: '300000'});
+                
                 var pat_name = document.getElementById("pat_name").value;
                 var dob = document.getElementById("birthday").value;
                 var gender = document.getElementById("gender").value;
                 var addr  = document.getElementById("address").value;
-                //console.log(hosp_name + hosp_loc + spl);
                 
-                myContract.methods.registerPatient(pat_name,dob,gender,"true","sjhvchjs").call(function (err, result) 
+                myContract.methods.registerPatient(pat_name,dob,gender,"true","sjhvchjs").send(function (err, result) 
                 {
                     if (err) 
                     { 

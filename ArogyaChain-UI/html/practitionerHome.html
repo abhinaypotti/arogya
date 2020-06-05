@@ -1,12 +1,12 @@
 <!-- 
 Author       : Shanmuka Abhinay Potti
-Date Updated : 02.05.2020
+Date Updated : 05.06.2020
 -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Arogya chain</title>
-    <meta charset="utf-8">
+    <title> Arogya chain | Practitioner</title>
+    <meta charset="UTF-8">
 </head>
     <body>
         
@@ -36,21 +36,43 @@ Date Updated : 02.05.2020
     
      <!-- 
     Author       : Ramaguru Radhakrishnan
-    Date Updated : 01.05.2020
+    Date Updated : 18.05.2020
     -->
-    <script src=" https://cdn.jsdelivr.net/npm/web3@1.2.7/dist/web3.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
         <script src="../js/abi.js"></script>
         <script>
-    
-        window.onload = function () 
-        {
-            // check to see if user has metamask addon installed on his browser. check to make sure web3 is defined
-            if (typeof web3 ==='undefined') 
-            {
-                web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-                //web3 = new Web3(new web3.currentProvider);
-            }
-        }  
+		var account;
+        window.addEventListener('load', async () => {
+	
+		console.log('Window Load Event');
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is installed!"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
+
+			});  
     </script>
         
     <script>
@@ -70,15 +92,15 @@ Date Updated : 02.05.2020
                 console.log(error);
              }
          });
+		 
+		 
         function hexToString (hex) 
-        {
-            var string = '';
-            for (var i = 128; i < hex.length; i += 2) 
-            {
-                string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-            }
-            return string.substring(1);
-        }
+					{
+						var tobeconverted = '';
+						tobeconverted = parseInt(hex).toString();
+						console.log(tobeconverted);
+						return tobeconverted;
+					}
         
         //function to retrieve the last inserted value on the blockchain
         function enterDiag()
@@ -90,14 +112,13 @@ Date Updated : 02.05.2020
             {
                
                 //instantiate and connect to contract address via Abi
-                var myContract = new web3.eth.Contract(pracABI, pracSCAddr, {from: '0xB12EF1064EC99D5b6d404396631BEb2724181f96', gasPrice: '5000000'});
-                //call the get function of our SimpleStorage contract
-                console.log(myContract);
+                var myContract = new web3.eth.Contract(pracABI, pracSCAddr, {from: account, gasPrice: '5000000', gas: '300000'});
+         
                 var pat_id = document.getElementById("fname").value;
                 var diag = document.getElementById("lname").value;
                 //var spl = document.getElementById("specializations").value;
-                //console.log(hosp_name + hosp_loc + spl);
-                myContract.methods.treatAndUpdateRecord(pat_id,"good",diag,[] ,"link").call(function (err, result) 
+             
+                myContract.methods.treatAndUpdateRecord(pat_id,"good",diag,[] ,"link").send(function (err, result) 
                 {
                     if (err) 
                     { 

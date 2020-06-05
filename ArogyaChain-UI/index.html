@@ -1,12 +1,12 @@
 <!-- 
 Author       : Shanmuka Abhinay Potti
-Date Updated : 02.05.2020
+Date Updated : 05.06.2020
 -->
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Arogya Chain|Home</title>
-        <meta charset="utf-8">
+        <title>Arogya Chain | Home</title>
+        <meta charset="UTF-8">
         <style>
             #container{
                 width:100%;
@@ -44,46 +44,44 @@ Date Updated : 02.05.2020
             }
             
             .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+			  background-color: #4CAF50;
+			  color: white;
+			  padding: 16px;
+			  font-size: 16px;
+			  border: none;
+			  cursor: pointer;
+			}
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+			.dropdown {
+			  position: relative;
+			  display: inline-block;
+			}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+			.dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: #f9f9f9;
+			  min-width: 160px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			  z-index: 1;
+			}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+			.dropdown-content a {
+			  color: black;
+			  padding: 12px 16px;
+			  text-decoration: none;
+			  display: block;
+			}
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+			.dropdown-content a:hover {background-color: #f1f1f1}
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+			.dropdown:hover .dropdown-content {
+			  display: block;
+			}
 
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-        
-        
+			.dropdown:hover .dropbtn {
+			  background-color: #3e8e41;
+			}
         </style>
     </head>
     <body>
@@ -98,34 +96,55 @@ Date Updated : 02.05.2020
             
             <br><br><br>
             <div class="dropdown">
-  <button class="dropbtn">Select User type</button>
-  <div class="dropdown-content">
-  <a href="html/hospital.html">Hospital</a>
-  <a href="html/practitionerLogin.html">Practitioner</a>
-  <a href="html/patientlogin.html">Patient</a>
-      <a href="html/insurerLogin.html">Insurer</a>
-  </div>
-</div>
+			  <button class="dropbtn">Select User type</button>
+				<div class="dropdown-content">
+					<a href="html/hospital.html">Hospital</a>
+					<a href="html/practitionerLogin.html">Practitioner</a>
+					<a href="html/patientlogin.html">Patient</a>
+					<a href="html/insurerLogin.html">Insurer</a>
+				</div>
+			</div>
         </div>
         
         
          <!-- 
-    Author       : Ramaguru Radhakrishnan
-    Date Updated : 01.05.2020
-    -->
-    <script src=" https://cdn.jsdelivr.net/npm/web3@1.2.7/dist/web3.js"></script>
+			Author       : Ramaguru Radhakrishnan
+			Date Updated : 18.05.2020
+			-->
+    <script src=" https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
     <script>
-        window.onload = function () 
-        {
-            // check to see if user has metamask addon installed on his browser. check to make sure web3 is defined
-            if (typeof web3 ==='undefined') 
-            {
-                web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-                //web3 = new Web3(new web3.currentProvider);
-            }
-        }  
-    </script>
-    
-    </body>
+		var account;
+        window.addEventListener('load', async () => {
+	
+		console.log('Window Load Event');
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is installed!"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
 
+			});
+    </script>   
+	</body>
 </html>

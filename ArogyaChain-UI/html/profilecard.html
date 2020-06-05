@@ -1,83 +1,106 @@
 <!-- 
 Author       : Shanmuka Abhinay Potti
-Date Updated : 02.05.2020
+Date Updated : 05.06.2020
 -->
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Arogya chain</title>
-    <meta charset="utf-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
+    <title>Arogya chain | Profile Card</title>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+		.card {
+		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		  max-width: 300px;
+		  margin: auto;
+		  text-align: center;
+		  font-family: arial;
+		}
 
-.title {
-  color: grey;
-  font-size: 18px;
-}
+		.title {
+		  color: grey;
+		  font-size: 18px;
+		}
 
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
+		button {
+		  border: none;
+		  outline: 0;
+		  display: inline-block;
+		  padding: 8px;
+		  color: white;
+		  background-color: #000;
+		  text-align: center;
+		  cursor: pointer;
+		  width: 100%;
+		  font-size: 18px;
+		}
 
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
+		a {
+		  text-decoration: none;
+		  font-size: 22px;
+		  color: black;
+		}
 
-button:hover, a:hover {
-  opacity: 0.7;
-}
-</style>
-</head>
-<body>
+		button:hover, a:hover {
+		  opacity: 0.7;
+		}
+		</style>
+	</head>
+	<body>
 
-<h2 style="text-align:center">Doctor Profile</h2>
+		<h2 style="text-align:center">Doctor Profile</h2>
 
-<div class="card">
-  <img src="images/doctor.jpg" alt="John" style="width:100%">
-  <h1>John Doe</h1>
-  <p class="title">MD, DM, FAMS, FAAN. Chief of Neurology</p>
-  <p>Care Hospitals</p>
-  <div style="margin: 24px 0;">
-    <a href="#"><i class="fa fa-dribbble"></i></a> 
-    <a href="#"><i class="fa fa-twitter"></i></a>  
-    <a href="#"><i class="fa fa-linkedin"></i></a>  
-    <a href="#"><i class="fa fa-facebook"></i></a> 
-  </div>
-  <p><button>Contact</button></p>
-</div>
- <!-- 
+		<div class="card">
+		  <img src="images/doctor.jpg" alt="John" style="width:100%">
+		  <h1>John Doe</h1>
+		  <p class="title">MD, DM, FAMS, FAAN. Chief of Neurology</p>
+		  <p>Care Hospitals</p>
+		  <div style="margin: 24px 0;">
+			<a href="#"><i class="fa fa-dribbble"></i></a> 
+			<a href="#"><i class="fa fa-twitter"></i></a>  
+			<a href="#"><i class="fa fa-linkedin"></i></a>  
+			<a href="#"><i class="fa fa-facebook"></i></a> 
+		  </div>
+		  <p><button>Contact</button></p>
+		</div>
+	<!-- 
     Author       : Ramaguru Radhakrishnan
-    Date Updated : 01.05.2020
+    Date Updated : 18.05.2020
     -->
-    <script src=" https://cdn.jsdelivr.net/npm/web3@1.2.7/dist/web3.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
     <script>
-        window.onload = function () 
-        {
-            // check to see if user has metamask addon installed on his browser. check to make sure web3 is defined
-            if (typeof web3 ==='undefined') 
-            {
-                web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-                //web3 = new Web3(new web3.currentProvider);
-            }
-        }  
+		var account;
+        window.addEventListener('load', async () => {
+	
+		console.log('Window Load Event');
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is installed!"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
+
+			});  
     </script>
     
     <script>
@@ -97,15 +120,15 @@ button:hover, a:hover {
                 console.log(error);
              }
          });
+		 
+		 
         function hexToString (hex) 
-        {
-            var string = '';
-            for (var i = 128; i < hex.length; i += 2) 
-            {
-                string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-            }
-            return string.substring(1);
-        }
+					{
+						var tobeconverted = '';
+						tobeconverted = parseInt(hex).toString();
+						console.log(tobeconverted);
+						return tobeconverted;
+					}
         
         //function to retrieve the last inserted value on the blockchain
         function getValue()
@@ -121,11 +144,12 @@ button:hover, a:hover {
                     ]
                 //contract address. please change the address to your own
                 var contractaddress = '0x2A73aeD68cA411F38f34251AD81b4b6C599bb4df';
+				
                 //instantiate and connect to contract address via Abi
-                var myAbi = web3.eth.contract(abi);
-                var myfunction = myAbi.at(contractaddress);
+                var myContract = new web3.eth.Contract(pracABI, pracSCAddr, {from: account, gasPrice: '5000000', gas: '300000'});
+                
                 //call the get function of our SimpleStorage contract
-                myfunction.retreive.call(function (err, id) 
+                mycontract.methods.retreive.call(function (err, id) 
                 {
                     if (err) 
                     { 

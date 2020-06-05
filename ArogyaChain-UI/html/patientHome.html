@@ -1,80 +1,79 @@
 <!-- 
 Author       : Shanmuka Abhinay Potti
-Date Updated : 02.05.2020
+Date Updated : 05.06.2020
 -->
 <!DOCTYPE html>
 <html>
-<head>
+	<head
+	<title>Arogya Chain | Patient</title>
+	<meta charset="UTF-8">
+	</head>
 
-<title>Transaction</title>
+	<style>
 
-</head>
+	  #header1 {
+		height: 150px;
+		width: auto;
+		background-color: #68dd87;
+		font-size: 4em;
+		text-align: center;
+		color: white;
+	  }
 
-<style>
+	  #container {
+		height: 510px;
+		width: auto;
 
-  #header1 {
-    height: 150px;
-    width: auto;
-    background-color: #68dd87;
-    font-size: 4em;
-    text-align: center;
-    color: white;
-  }
+	  }
 
-  #container {
-    height: 510px;
-    width: auto;
+	  * {
+		color: #9c9c9c;
+	  }
 
-  }
+	  hr {
+		height: 0;
+		border: 0;
+		margin: 0;
+		border-top: 1px solid black;
+		border-bottom: 1px solid #383838;
+	  }
 
-  * {
-    color: #9c9c9c;
-  }
+	  body {
+		background: #0a0a0a;
+	  }
 
-  hr {
-    height: 0;
-    border: 0;
-    margin: 0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid #383838;
-  }
+	  table {
+		border-collapse: collapse;
+		font: 20px Calibri Light, sans-serif;
+		border-color: transparent;
+		text-align: center;
+	  }
 
-  body {
-    background: #0a0a0a;
-  }
+	  th {
+		border-bottom: 1px solid;
+	  }
 
-  table {
-    border-collapse: collapse;
-    font: 20px Calibri Light, sans-serif;
-    border-color: transparent;
-    text-align: center;
-  }
+	  td {
+		padding: 10px;
+		border: 0;
+	  }
 
-  th {
-    border-bottom: 1px solid;
-  }
+	  .borderline {
+		border-right: 1px solid;
+	  }
 
-  td {
-    padding: 10px;
-    border: 0;
-  }
+	  .date {
+		width: 50px;
+	  }
 
-  .borderline {
-    border-right: 1px solid;
-  }
+	  .crossref {
+		width: 300px;
+	  }
 
-  .date {
-    width: 50px;
-  }
-
-  .crossref {
-    width: 300px;
-  }
-
-  .figure {
-    width: 70px;
-  }
-</style>
+	  .figure {
+		width: 70px;
+	  }
+	</style>
 
 
 <body>
@@ -98,44 +97,39 @@ Date Updated : 02.05.2020
         <td class="figure">Report</td>
       </tr>
     </table>
-<!-- date and depts visited, prescriptions, hospital id,present observation ,com -- health status,mon medical problems  -->
-    <input type="button" value="Fill Table" onclick="return fillTable(
-'ledger',
-'Jan 31 2019',
-'Firstname lastname','Cardiologist',
-'1',
-'Fever','Normal',
-'Low chances for Corona and it is a normal fever',
-'report link')" />
+		<!-- date and depts visited, prescriptions, hospital id,present observation ,com -- health status,mon medical problems  -->
+		<input type="button" value="Fill Table" onclick="return fillTable(
+		'ledger',
+		'Jan 31 2019',
+		'Firstname lastname','Cardiologist',
+		'1',
+		'Fever','Normal',
+		'Low chances for Corona and it is a normal fever',
+		'report link')" />
 
-    <input
-  type="button"
-  value="addRow"
-  onclick="return addRow('ledger')"
-  />
+			<input
+		  type="button"
+		  value="addRow"
+		  onclick="return addRow('ledger')"
+		  />
 
-<input
-  type="button"
-  value="fillRow"
-  onclick="return fillRow(
-'ledger',
-'3' ,
-'Jan 31',
-'Firstname lastname',
-'1',
-'Fever',
-'Low chances for Corona and it is a normal fever',
-'report')"
-  />
-  <hr>
-  </div>
-    <button onclick="getDiag()">retrieve</button>
-    <p id="xbalance"></p>
-    
-    
-     
-
-  
+		<input
+		  type="button"
+		  value="fillRow"
+		  onclick="return fillRow(
+		'ledger',
+		'3' ,
+		'Jan 31',
+		'Firstname lastname',
+		'1',
+		'Fever',
+		'Low chances for Corona and it is a normal fever',
+		'report')"
+		  />
+		  <hr>
+		  </div>
+			<button onclick="getDiag()">retrieve</button>
+			<p id="xbalance"></p>
 
   <script>
     function addRow(table) {
@@ -237,25 +231,46 @@ Date Updated : 02.05.2020
     
      <!-- 
     Author       : Ramaguru Radhakrishnan
-    Date Updated : 01.05.2020
+    Date Updated : 18.05.2020
     -->
-    <script src=" https://cdn.jsdelivr.net/npm/web3@1.2.7/dist/web3.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/web3/dist/web3.js"></script>
     <script src="../js/abi.js"></script>
     <script>
-        window.onload = function () 
-        {
-            // check to see if user has metamask addon installed on his browser. check to make sure web3 is defined
-            if (typeof web3 ==='undefined') 
-            {
-                web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-                //web3 = new Web3(new web3.currentProvider);
-            }
-        }  
+		var account;
+        window.addEventListener('load', async () => {
+	
+		if (typeof window.ethereum !== 'undefined') { 
+			console.log("MetaMask is installed!"); 
+			}
+			
+		// Modern DApp browsers
+		if (window.ethereum) {
+			window.web3 = new Web3(ethereum);
+			
+			// To prevent the page reloading when the MetaMask network changes
+			ethereum.autoRefreshOnNetworkChange = false;
+			
+			// To Capture the account details from MetaMask
+			const accounts = await ethereum.enable();
+			account = accounts[0];
+				
+			}
+		// Legacy DApp browsers
+		else if (window.web3) {
+			//window.web3 = new Web3(web3.currentProvider);
+			window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/cbd9dc11b30147e9a2cc974be655ef7c")); 
+			}
+		// Non-DApp browsers
+		else {
+			console.log('Non-Ethereum browser detected. Please install MetaMask');
+			}
+
+			}); 
     </script>
     
     <script>
          web3 = new Web3(new Web3.providers.WebsocketProvider("wss://ropsten.infura.io/ws/v3/cbd9dc11b30147e9a2cc974be655ef7c"));
-         console.log("checking");
+
          var subscription = web3.eth.subscribe('logs', {
              address: '0x2Aad0cB9eB6C39508599E5aD866C18a2d90187Ff',
              topics: ['0xa1cac0c02aaa8455b22f4edad5ea6218aeec41fd73afcf8668f7586accd1f901']
@@ -270,15 +285,15 @@ Date Updated : 02.05.2020
                 console.log(error);
              }
          });
+		 
+		 
         function hexToString (hex) 
-        {
-            var string = '';
-            for (var i = 128; i < hex.length; i += 2) 
-            {
-                string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-            }
-            return string.substring(1);
-        }
+					{
+						var tobeconverted = '';
+						tobeconverted = parseInt(hex).toString();
+						console.log(tobeconverted);
+						return tobeconverted;
+					}
         
         //function to retrieve the last inserted value on the blockchain
         function getDiag()
@@ -290,14 +305,13 @@ Date Updated : 02.05.2020
             {
                
                 //instantiate and connect to contract address via Abi
-                var myContract = new web3.eth.Contract(patABI, patSCAddr, {from: '0xB12EF1064EC99D5b6d404396631BEb2724181f96', gasPrice: '5000000'});
-                //call the get function of our SimpleStorage contract
-                //console.log(myContract);
+                var myContract = new web3.eth.Contract(patABI, patSCAddr, {from: account, gasPrice: '5000000', gas: '300000'});
+               
                 //var hosp_name = document.getElementById("hosp_name").value;
                 //var hosp_loc = document.getElementById("hosp_loc").value;
                 //var spl = document.getElementById("specializations").value;
-                //console.log(hosp_name + hosp_loc + spl);
-                myContract.methods.updateMedicalRecord().call(function (err, result) 
+                
+                myContract.methods.updateMedicalRecord().send(function (err, result) 
                 {
                     if (err) 
                     { 
